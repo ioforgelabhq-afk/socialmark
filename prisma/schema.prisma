@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String?
+  name          String?
+  image         String?
+  onboardingData String?   // JSON stored as string
+  accounts      SocialAccount[]
+  conversations Conversation[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model SocialAccount {
+  id            String    @id @default(cuid())
+  platform      String
+  platformId    String
+  accountName   String?
+  accessToken   String
+  refreshToken  String?
+  expiresAt     DateTime?
+  metadata      String?   // JSON stored as string
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([userId, platform, platformId])
+}
+
+model Conversation {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages      String    // JSON array stored as string
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
