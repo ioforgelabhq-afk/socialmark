@@ -3,6 +3,8 @@ import { saveOnboardingData } from "@/lib/services/onboarding";
 import { onboardingSchema } from "@/lib/schemas/onboarding";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();

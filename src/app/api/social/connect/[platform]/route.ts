@@ -2,6 +2,8 @@ import { auth } from "@/lib/auth";
 import { createSocialAccount } from "@/lib/services/social";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 // Mock OAuth tokens for demo purposes
 const mockTokens: Record<string, { token: string; refreshToken?: string }> = {
   facebook: {

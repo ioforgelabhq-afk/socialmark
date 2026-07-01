@@ -2,6 +2,8 @@ import { auth } from "@/lib/auth";
 import { getSocialAccounts } from "@/lib/services/social";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(_request: NextRequest) {
   try {
     const session = await auth();
