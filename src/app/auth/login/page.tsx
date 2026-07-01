@@ -24,18 +24,18 @@ export default function LoginPage() {
       const result = await signIn("credentials", {
         email,
         password,
-        redirect: false,
+        redirect: true,
+        callbackUrl: "/dashboard",
       });
 
       if (result?.error) {
+        setLoading(false);
         toast.error(result.error);
-      } else if (result?.ok) {
-        router.push("/dashboard");
       }
+      // If redirect: true, the signIn function will automatically redirect
     } catch (error) {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
       setLoading(false);
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
