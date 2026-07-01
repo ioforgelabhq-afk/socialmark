@@ -24,15 +24,16 @@ export default function LoginPage() {
       const result = await signIn("credentials", {
         email,
         password,
-        redirect: true,
-        callbackUrl: "/dashboard",
+        redirect: false,
       });
 
-      if (result?.error) {
+      if (result && 'error' in result && result.error) {
         setLoading(false);
         toast.error(result.error);
+      } else {
+        // Successful login, redirect to dashboard
+        router.push("/dashboard");
       }
-      // If redirect: true, the signIn function will automatically redirect
     } catch (error) {
       setLoading(false);
       toast.error("Something went wrong. Please try again.");

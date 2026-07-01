@@ -4,6 +4,8 @@ import { Topbar } from "@/components/dashboard/Topbar";
 import { redirect } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardLayout({
   children,
 }: {

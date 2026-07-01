@@ -14,6 +14,8 @@ interface SocialAccount {
   createdAt: string;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default function AccountsPage() {
   const [accounts, setAccounts] = useState<SocialAccount[]>([]);
   const [loading, setLoading] = useState(true);

@@ -6,6 +6,8 @@ import { Zap, BarChart3, Palette, Wand2, Plus, TrendingUp, Calendar, MessageSqua
 import { ChatInterface } from "@/components/dashboard/ChatInterface";
 import { AgentCard } from "@/components/dashboard/AgentCard";
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage() {
   const session = await auth();
 

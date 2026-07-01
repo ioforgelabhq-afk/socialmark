@@ -10,6 +10,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 
+export const dynamic = 'force-dynamic';
+
 export default function SignupPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);

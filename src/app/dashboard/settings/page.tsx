@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { auth } from "@/lib/auth";
 
+export const dynamic = 'force-dynamic';
+
 export default async function SettingsPage() {
   const session = await auth();
 
