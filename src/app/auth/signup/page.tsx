@@ -50,6 +50,7 @@ export default function SignupPage() {
           name: formData.name,
           email: formData.email,
           password: formData.password,
+          confirmPassword: formData.confirmPassword,
         }),
       });
 

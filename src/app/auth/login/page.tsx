@@ -7,14 +7,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { useEffect } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("demo@example.com");
   const [password, setPassword] = useState("demo123456");
+
+  // Redirect to dashboard when session is available
+  useEffect(() => {
+    if (session) {
+      router.push("/dashboard");
+    }
+  }, [session, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,8 +40,8 @@ export default function LoginPage() {
         setLoading(false);
         toast.error(result.error);
       } else {
-        // Successful login, redirect to dashboard
-        router.push("/dashboard");
+        // Successful login - the useEffect will handle redirect when session is available
+        setLoading(false);
       }
     } catch (error) {
       setLoading(false);
